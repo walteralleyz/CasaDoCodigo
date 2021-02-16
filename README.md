@@ -14,8 +14,10 @@
 | Relação Clt/Ps/Est | &#128076; |
 
 
-<h4><center>Princípio do Projeto</center></h4>
-<center><i>Uma API para cadastro de livros, autores e clientes.<i><center>
+<h4>Princípio do Projeto</h4>
+<i>Uma API para cadastro de livros, autores e clientes.</i>
 
-<h4><center>Desafios</center></h4>
-<center><i><mark>Criar relacionamentos entre as entidades</mark></i><br/><i>Criar validações genéricas ou específicas</i><br/><i><mark>Criar artifícios de programação defensiva</mark></i></center>
+<h4>Desafios</h4>
+<i>Criar relacionamentos entre as entidades</i><br/>
+<i>Criar validações genéricas ou específicas</i><br/>
+<i>Criar artifícios de programação defensiva</i>
