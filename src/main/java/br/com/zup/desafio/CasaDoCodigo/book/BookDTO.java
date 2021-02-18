@@ -1,7 +1,7 @@
 package br.com.zup.desafio.CasaDoCodigo.book;
 
-import br.com.zup.desafio.CasaDoCodigo.annotation.Exists;
-import br.com.zup.desafio.CasaDoCodigo.annotation.Singular;
+import br.com.zup.desafio.CasaDoCodigo.interfaces.Exists;
+import br.com.zup.desafio.CasaDoCodigo.interfaces.Singular;
 import br.com.zup.desafio.CasaDoCodigo.author.Author;
 import br.com.zup.desafio.CasaDoCodigo.category.Category;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -9,10 +9,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 
 import javax.persistence.EntityManager;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
@@ -40,6 +37,7 @@ public class BookDTO {
     private final Integer pageLength;
 
     @NotNull
+    @FutureOrPresent
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     @JsonFormat(pattern = "yyyy-MM-dd", shape = JsonFormat.Shape.STRING)
     private final LocalDate launchDate;

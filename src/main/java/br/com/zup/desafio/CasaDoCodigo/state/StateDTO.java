@@ -1,9 +1,8 @@
 package br.com.zup.desafio.CasaDoCodigo.state;
 
-import br.com.zup.desafio.CasaDoCodigo.annotation.Exists;
-import br.com.zup.desafio.CasaDoCodigo.annotation.UniqueState;
+import br.com.zup.desafio.CasaDoCodigo.interfaces.Exists;
+import br.com.zup.desafio.CasaDoCodigo.interfaces.UniqueState;
 import br.com.zup.desafio.CasaDoCodigo.country.Country;
-import br.com.zup.desafio.CasaDoCodigo.exception.MissingValueException;
 
 import javax.persistence.EntityManager;
 import javax.validation.constraints.Min;

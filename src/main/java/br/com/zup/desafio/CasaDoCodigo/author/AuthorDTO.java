@@ -1,6 +1,6 @@
 package br.com.zup.desafio.CasaDoCodigo.author;
 
-import br.com.zup.desafio.CasaDoCodigo.annotation.Singular;
+import br.com.zup.desafio.CasaDoCodigo.interfaces.Singular;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.format.annotation.DateTimeFormat;
 

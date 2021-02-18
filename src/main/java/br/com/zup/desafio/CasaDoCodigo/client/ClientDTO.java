@@ -1,10 +1,12 @@
 package br.com.zup.desafio.CasaDoCodigo.client;
 
-import br.com.zup.desafio.CasaDoCodigo.annotation.Exists;
-import br.com.zup.desafio.CasaDoCodigo.annotation.Singular;
+import br.com.zup.desafio.CasaDoCodigo.interfaces.Exists;
+import br.com.zup.desafio.CasaDoCodigo.interfaces.Singular;
 import br.com.zup.desafio.CasaDoCodigo.country.Country;
 import br.com.zup.desafio.CasaDoCodigo.exception.MissingValueException;
 import br.com.zup.desafio.CasaDoCodigo.state.State;
+import org.hibernate.validator.constraints.br.CNPJ;
+import org.hibernate.validator.constraints.br.CPF;
 
 import javax.persistence.EntityManager;
 import javax.validation.constraints.*;
@@ -24,6 +26,8 @@ public class ClientDTO {
     @NotBlank
     @Pattern(regexp = "([0-9]{2}[\\.]?[0-9]{3}[\\.]?[0-9]{3}[\\/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[\\.]?[0-9]{3}[\\.]?[0-9]{3}[-]?[0-9]{2})")
     @Singular(domainClass = Client.class, fieldName = "doc")
+    @CPF
+    @CNPJ
     private final String doc;
 
     @NotBlank

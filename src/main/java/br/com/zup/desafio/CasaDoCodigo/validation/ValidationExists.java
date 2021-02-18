@@ -1,6 +1,7 @@
 package br.com.zup.desafio.CasaDoCodigo.validation;
 
-import br.com.zup.desafio.CasaDoCodigo.annotation.Exists;
+import br.com.zup.desafio.CasaDoCodigo.interfaces.Exists;
+import org.springframework.util.Assert;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -14,7 +15,7 @@ public class ValidationExists implements ConstraintValidator<Exists, Object> {
     private Class<?> cls;
 
     @PersistenceContext
-    private EntityManager entityManager;
+    private EntityManager em;
 
     @Override
     public void initialize(Exists params) {
@@ -24,8 +25,8 @@ public class ValidationExists implements ConstraintValidator<Exists, Object> {
 
     @Override
     public boolean isValid(Object value, ConstraintValidatorContext context) {
-        Query query = entityManager.createQuery(
-                String.format("select 1 from %s where %s = :value", cls.getName(), attr)
+        Query query = em.createQuery(
+            String.format("select 1 from %s where %s = :value", cls.getName(), attr)
         );
 
         query.setParameter("value", value);

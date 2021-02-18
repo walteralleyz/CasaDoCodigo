@@ -7,7 +7,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "states")
+@Table(name = "states", uniqueConstraints = {@UniqueConstraint(columnNames = {"country_id", "name"})})
 public class State {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

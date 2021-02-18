@@ -1,6 +1,6 @@
 package br.com.zup.desafio.CasaDoCodigo.validation;
 
-import br.com.zup.desafio.CasaDoCodigo.annotation.UniqueState;
+import br.com.zup.desafio.CasaDoCodigo.interfaces.UniqueState;
 import org.springframework.util.Assert;
 
 import javax.persistence.EntityManager;

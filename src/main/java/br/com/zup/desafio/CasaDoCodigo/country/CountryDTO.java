@@ -1,6 +1,6 @@
 package br.com.zup.desafio.CasaDoCodigo.country;
 
-import br.com.zup.desafio.CasaDoCodigo.annotation.Singular;
+import br.com.zup.desafio.CasaDoCodigo.interfaces.Singular;
 
 import javax.validation.constraints.NotBlank;
 
