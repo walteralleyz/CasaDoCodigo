@@ -26,8 +26,6 @@ public class ClientDTO {
     @NotBlank
     @Pattern(regexp = "([0-9]{2}[\\.]?[0-9]{3}[\\.]?[0-9]{3}[\\/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[\\.]?[0-9]{3}[\\.]?[0-9]{3}[-]?[0-9]{2})")
     @Singular(domainClass = Client.class, fieldName = "doc")
-    @CPF
-    @CNPJ
     private final String doc;
 
     @NotBlank
