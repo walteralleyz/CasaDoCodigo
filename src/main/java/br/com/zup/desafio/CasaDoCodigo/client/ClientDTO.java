@@ -1,16 +1,21 @@
 package br.com.zup.desafio.CasaDoCodigo.client;
 
-import br.com.zup.desafio.CasaDoCodigo.interfaces.Exists;
-import br.com.zup.desafio.CasaDoCodigo.interfaces.Singular;
+import br.com.zup.desafio.CasaDoCodigo.interfaces.*;
 import br.com.zup.desafio.CasaDoCodigo.country.Country;
 import br.com.zup.desafio.CasaDoCodigo.exception.MissingValueException;
 import br.com.zup.desafio.CasaDoCodigo.state.State;
+import br.com.zup.desafio.CasaDoCodigo.util.ClientSequenceGroupProvider;
+import br.com.zup.desafio.CasaDoCodigo.util.TipoPessoa;
 import org.hibernate.validator.constraints.br.CNPJ;
 import org.hibernate.validator.constraints.br.CPF;
+import org.hibernate.validator.group.GroupSequenceProvider;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.validation.constraints.*;
 
+@GroupSequenceProvider(ClientSequenceGroupProvider.class)
 public class ClientDTO {
     @NotBlank
     private final String name;
@@ -23,9 +28,14 @@ public class ClientDTO {
     @Singular(domainClass = Client.class, fieldName = "email")
     private final String email;
 
+    @Enumerated(EnumType.STRING)
+    @NotNull
+    private final TipoPessoa tipoPessoa;
+
     @NotBlank
-    @Pattern(regexp = "([0-9]{2}[\\.]?[0-9]{3}[\\.]?[0-9]{3}[\\/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[\\.]?[0-9]{3}[\\.]?[0-9]{3}[-]?[0-9]{2})")
     @Singular(domainClass = Client.class, fieldName = "doc")
+    @CPF(groups = CpfGroup.class)
+    @CNPJ(groups = CnpjGroup.class)
     private final String doc;
 
     @NotBlank
@@ -38,11 +48,11 @@ public class ClientDTO {
     private final String city;
 
     @NotBlank
-    @Pattern(regexp = "\\(?\\d{2,}\\)?[ -]?\\d{4,}[\\-\\s]?\\d{4}")
+    @BRTel
     private final String phone;
 
     @NotBlank
-    @Pattern(regexp = "^\\d{5}-\\d{3}$")
+    @CEP
     private final String cep;
 
     @NotNull
@@ -56,17 +66,19 @@ public class ClientDTO {
     public ClientDTO(@NotBlank String name,
                      @NotBlank String lastname,
                      @NotBlank @Email String email,
-                     @NotBlank @Pattern(regexp = "([0-9]{2}[\\.]?[0-9]{3}[\\.]?[0-9]{3}[\\/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[\\.]?[0-9]{3}[\\.]?[0-9]{3}[-]?[0-9]{2})") String doc,
+                     @NotNull TipoPessoa tipoPessoa,
+                     @NotBlank String doc,
                      @NotBlank String address,
                      @NotBlank String addressComplement,
                      @NotBlank String city,
                      @NotNull Integer country_id,
                      Integer state_id,
-                     @NotBlank @Pattern(regexp = "\\(?\\d{2,}\\)?[ -]?\\d{4,}[\\-\\s]?\\d{4}") String phone,
-                     @NotBlank @Pattern(regexp = "^\\d{5}-\\d{3}$") String cep) {
+                     @NotBlank String phone,
+                     @NotBlank String cep) {
         this.name = name;
         this.lastname = lastname;
         this.email = email;
+        this.tipoPessoa = tipoPessoa;
         this.doc = doc;
         this.address = address;
         this.addressComplement = addressComplement;
@@ -142,5 +154,9 @@ public class ClientDTO {
 
     public Integer getState_id() {
         return state_id;
+    }
+
+    public TipoPessoa getTipoPessoa() {
+        return tipoPessoa;
     }
 }
