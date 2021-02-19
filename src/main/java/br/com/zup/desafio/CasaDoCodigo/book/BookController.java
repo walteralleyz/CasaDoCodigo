@@ -9,9 +9,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
-import java.net.URI;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -28,9 +26,8 @@ public class BookController {
         Book book = dto.toModel(entityManager);
 
         entityManager.persist(book);
-        URI uri = builder.path("/api/book/{id}").buildAndExpand(book.getIsbn()).toUri();
 
-        return ResponseEntity.created(uri).body(book.toDTO());
+        return ResponseEntity.ok().body(book.toDTO());
     }
 
     @GetMapping

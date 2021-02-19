@@ -12,7 +12,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
-import java.net.URI;
 
 @RestController
 @RequestMapping("/api/client")
@@ -28,9 +27,8 @@ public class ClientController {
         Client client = dto.toModel(entityManager);
 
         entityManager.persist(client);
-        URI uri = builder.path("/api/client/{id}").buildAndExpand(client.getId()).toUri();
 
-        return ResponseEntity.created(uri).body(client.toDTO());
+        return ResponseEntity.ok().body(client.toDTO());
     }
 }
 

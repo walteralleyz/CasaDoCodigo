@@ -11,7 +11,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
-import java.net.URI;
 
 @RestController
 @RequestMapping("/api/country")
@@ -26,8 +25,7 @@ public class CountryController {
         Country country = dto.toModel();
 
         entityManager.persist(country);
-        URI uri = builder.path("/api/country/{id}").buildAndExpand(country.getId()).toUri();
 
-        return ResponseEntity.created(uri).body(country.toDTO());
+        return ResponseEntity.ok().body(country.toDTO());
     }
 }

@@ -41,7 +41,10 @@ public class Author {
     }
 
     public AuthorDTO toDTO() {
-        return new AuthorDTO(name, email, description, createdAt);
+        AuthorDTO dto = new AuthorDTO(name, email, description);
+        dto.setCreatedAt(createdAt);
+
+        return dto;
     }
 
     public Integer getId() {
