@@ -15,48 +15,37 @@ import java.time.LocalDate;
 @Table(name = "books")
 public class Book {
     @Id
-    @NotBlank
-    private String isbn;
+    private final String isbn;
 
-    @NotBlank
     @Column(unique = true)
-    private String title;
+    private final String title;
 
-    @NotBlank
-    @Size(max = 500)
-    private String content;
+    @Column(length = 500)
+    private final String content;
 
     private String summary;
 
-    @NotNull
-    @Min(20)
-    private BigDecimal price;
+    private final BigDecimal price;
 
-    @NotNull
-    @Min(100)
-    private Integer pageLength;
+    private final Integer pageLength;
 
-    private LocalDate launchDate;
+    private final LocalDate launchDate;
 
-    @NotNull
     @ManyToOne(fetch = FetchType.EAGER)
-    private Category category;
+    private final Category category;
 
-    @NotNull
     @JoinColumn(name = "author_id")
     @OneToOne(fetch = FetchType.EAGER)
-    private Author author;
+    private final Author author;
 
-    public Book() {}
-
-    public Book(@NotBlank  String isbn,
-                @NotBlank String title,
-                @NotBlank @Size(max = 500) String content,
-                @NotNull @Min(20) BigDecimal price,
-                @NotNull @Min(100) Integer pageLength,
+    public Book(String isbn,
+                String title,
+                String content,
+                BigDecimal price,
+                Integer pageLength,
                 LocalDate launchDate,
-                @NotNull Category category,
-                @NotNull Author author,
+                Category category,
+                Author author,
                 String summary) {
         this.isbn = isbn;
         this.title = title;

@@ -1,10 +1,6 @@
 package br.com.zup.desafio.CasaDoCodigo.author;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 
 @Entity
@@ -12,28 +8,20 @@ import java.time.LocalDateTime;
 public class Author {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    private final String name;
 
-    @NotBlank
-    private String name;
-
-    @NotBlank
-    @Email
     @Column(unique = true)
-    private String email;
+    private final String email;
 
-    @NotBlank
-    @Size(max = 400)
-    private String description;
+    @Column(length = 400)
+    private final String description;
 
-    @NotNull
-    private LocalDateTime createdAt;
+    private final LocalDateTime createdAt;
 
-    public Author() {}
-
-    public Author(@NotBlank String name,
-                  @NotBlank @Email String email,
-                  @NotBlank @Size(max = 400) String description,
-                  @NotNull LocalDateTime createdAt) {
+    public Author(String name,
+                  String email,
+                  String description,
+                  LocalDateTime createdAt) {
         this.name = name;
         this.email = email;
         this.description = description;

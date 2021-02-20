@@ -6,67 +6,50 @@ import br.com.zup.desafio.CasaDoCodigo.state.State;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 
-import static java.util.regex.Pattern.compile;
-
 @Entity
 @Table(name = "clients")
 public class Client {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @NotBlank
-    private String name;
+    private final String name;
 
-    @NotBlank
-    private String lastname;
+    private final String lastname;
 
-    @NotBlank
-    @Email
     @Column(unique = true)
-    private String email;
+    private final String email;
 
-    @NotBlank
-    @Pattern(regexp = "([0-9]{2}[\\.]?[0-9]{3}[\\.]?[0-9]{3}[\\/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[\\.]?[0-9]{3}[\\.]?[0-9]{3}[-]?[0-9]{2})")
     @Column(unique = true)
-    private String doc;
+    private final String doc;
 
-    @NotBlank
-    private String address;
+    private final String address;
 
-    @NotBlank
-    private String addressComplement;
+    private final String addressComplement;
 
-    @NotBlank
-    private String city;
-
-    @NotNull
-    @ManyToOne(fetch = FetchType.EAGER)
-    private Country country;
+    private final String city;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    private State state;
+    private final Country country;
 
-    @NotBlank
-    @Pattern(regexp = "\\(?\\d{2,}\\)?[ -]?\\d{4,}[\\-\\s]?\\d{4}")
-    private String phone;
+    @ManyToOne(fetch = FetchType.EAGER)
+    private final State state;
 
-    @NotBlank
-    @Size(max = 9)
-    private String cep;
+    private final String phone;
 
-    public Client() {}
+    @Column(length = 9)
+    private final String cep;
 
-    public Client(@NotBlank String name,
-                  @NotBlank String lastname,
-                  @NotBlank @Email String email,
-                  @NotBlank @Pattern(regexp = "([0-9]{2}[\\.]?[0-9]{3}[\\.]?[0-9]{3}[\\/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[\\.]?[0-9]{3}[\\.]?[0-9]{3}[-]?[0-9]{2})") String doc,
-                  @NotBlank String address,
-                  @NotBlank String addressComplement,
-                  @NotBlank String city,
-                  @NotNull Country country,
+    public Client(String name,
+                  String lastname,
+                  String email,
+                  String doc,
+                  String address,
+                  String addressComplement,
+                  String city,
+                  Country country,
                   State state,
-                  @NotBlank @Pattern(regexp = "\\(?\\d{2,}\\)?[ -]?\\d{4,}[\\-\\s]?\\d{4}") String phone,
-                  @NotBlank @Size(max = 9) String cep) {
+                  String phone,
+                  String cep) {
         this.name = name;
         this.lastname = lastname;
         this.email = email;

@@ -9,11 +9,9 @@ public class Category {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @NotBlank
     @Column(unique = true)
-    private String name;
+    private final String name;
 
-    public Category() {}
     public Category(String name) {
         this.name = name;
     }

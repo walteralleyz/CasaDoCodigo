@@ -12,16 +12,12 @@ public class State {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @NotBlank
-    private String name;
+    private final String name;
 
-    @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
-    private Country country;
+    private final Country country;
 
-    public State() {}
-
-    public State(@NotBlank String name, @NotNull Country country) {
+    public State(String name, Country country) {
         this.name = name;
         this.country = country;
     }

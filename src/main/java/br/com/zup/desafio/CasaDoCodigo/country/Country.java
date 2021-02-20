@@ -12,16 +12,13 @@ public class Country {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @NotBlank
     @Column(unique = true)
-    private String name;
+    private final String name;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "country")
     private List<State> state;
 
-    public Country() {}
-
-    public Country(@NotBlank String name) {
+    public Country(String name) {
         this.name = name;
     }
 
